@@ -1,10 +1,11 @@
-import * as fromStore from '../store'
-import { Injectable } from '@angular/core'
-import { CanActivate } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
-import { tap, filter, take, switchMap, catchError } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs/Observable'
+import { CanActivate } from '@angular/router'
+import { tap, filter, take, switchMap, catchError } from 'rxjs/operators'
+
+import * as fromStore from '../store'
 
 @Injectable()
 export class PizzasGuard implements CanActivate {
