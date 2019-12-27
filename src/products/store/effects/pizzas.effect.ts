@@ -4,6 +4,7 @@ import { of } from 'rxjs/observable/of'
 import { Actions, Effect } from '@ngrx/effects'
 import { switchMap, map, catchError } from 'rxjs/operators'
 
+import * as fromRoot from '../../../app/store'
 import * as pizzaActions from '../actions'
 import * as fromService from '../../services'
 
@@ -35,6 +36,19 @@ export class PizzasEffects {
     })
   )
 
+  // Navigate happens after create pizza with success status
+  @Effect()
+  createPizzaSuccess$ = this.actions$
+    .ofType(pizzaActions.CREATE_PIZZA_SUCCESS)
+    .pipe(
+      map((action: pizzaActions.CreatePizzaSuccess) => action.payload),
+      map(pizza => {
+        return new fromRoot.Go({
+          path: ['/products', pizza.id]
+        })
+      })
+    )
+
   @Effect()
   updatePizza$ = this.actions$.ofType(pizzaActions.UPDATE_PIZZA).pipe(
     map((action: pizzaActions.UpdatePizza) => action.payload),
@@ -56,4 +70,19 @@ export class PizzasEffects {
       )
     })
   )
+
+  // Navigate happens after delete or update susccess
+  @Effect()
+  handlePizzaSuccesss$ = this.actions$
+    .ofType(
+      pizzaActions.UPDATE_PIZZA_SUCCESS,
+      pizzaActions.DELETE_PIZZA_SUCCESS
+    )
+    .pipe(
+      map(pizza => {
+        return new fromRoot.Go({
+          path: ['/products']
+        })
+      })
+    )
 }
