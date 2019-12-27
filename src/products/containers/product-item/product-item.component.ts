@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
 
 import { Store } from '@ngrx/store'
 import * as fromStore from '../../store'
@@ -10,6 +10,7 @@ import { tap } from 'rxjs/operators'
 
 @Component({
   selector: 'product-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['product-item.component.scss'],
   template: `
     <div class="product-item">

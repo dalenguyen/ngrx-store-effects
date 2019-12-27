@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable'
 
 @Component({
   selector: 'products',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['products.component.scss'],
   template: `
     <div class="products">
