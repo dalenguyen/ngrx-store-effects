@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { StoreModule, MetaReducer } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
-import { reducers, CustomSerializer } from './store'
+import { reducers, CustomSerializer, effects } from './store'
 import {
   StoreRouterConnectingModule,
   RouterStateSerializer
@@ -44,7 +44,7 @@ export const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(effects),
     environment.development ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
