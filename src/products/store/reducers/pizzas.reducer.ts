@@ -20,6 +20,7 @@ export function reducer(
   action: fromPizzas.PizzasAction
 ): PizzaState {
   switch (action.type) {
+    // Load pizza
     case fromPizzas.LOAD_PIZZAS: {
       return {
         ...state,
@@ -54,6 +55,19 @@ export function reducer(
         ...state,
         loaded: false,
         loading: false
+      }
+    }
+
+    // Create pizza
+    case fromPizzas.CREATE_PIZZA_SUCCESS: {
+      const pizza: Pizza = action.payload
+      const entities = {
+        ...state.entities,
+        [pizza.id]: pizza
+      }
+      return {
+        ...state,
+        entities
       }
     }
   }
