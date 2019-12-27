@@ -34,7 +34,6 @@ export class ProductItemComponent implements OnInit {
   constructor(private store: Store<fromStore.ProductsState>) {}
 
   ngOnInit() {
-    this.store.dispatch(new fromStore.LoadToppings())
     this.pizza$ = this.store.select(fromStore.getSelectedPizza).pipe(
       tap((pizza: Pizza = null) => {
         const pizzaExists = !!(pizza && pizza.toppings)
@@ -56,7 +55,9 @@ export class ProductItemComponent implements OnInit {
     this.store.dispatch(new fromStore.CreatePizza(event))
   }
 
-  onUpdate(event: Pizza) {}
+  onUpdate(event: Pizza) {
+    this.store.dispatch(new fromStore.UpdatePizza(event))
+  }
 
   onRemove(event: Pizza) {
     const remove = window.confirm('Are you sure?')

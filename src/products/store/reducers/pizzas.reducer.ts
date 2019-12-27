@@ -59,7 +59,9 @@ export function reducer(
     }
 
     // Create pizza
-    case fromPizzas.CREATE_PIZZA_SUCCESS: {
+    case fromPizzas.CREATE_PIZZA_SUCCESS:
+    // Update pizza
+    case fromPizzas.UPDATE_PIZZA_SUCCESS: {
       const pizza: Pizza = action.payload
       const entities = {
         ...state.entities,
