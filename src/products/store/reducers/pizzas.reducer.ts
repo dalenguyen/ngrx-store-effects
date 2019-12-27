@@ -72,6 +72,17 @@ export function reducer(
         entities
       }
     }
+
+    // Delete pizza
+    case fromPizzas.DELETE_PIZZA_SUCCESS: {
+      const pizza: Pizza = action.payload
+      const { [pizza.id]: removed, ...entities } = state.entities
+
+      return {
+        ...state,
+        entities
+      }
+    }
   }
   return state
 }
